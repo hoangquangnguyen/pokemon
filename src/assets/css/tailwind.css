@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+      .card__inner {
+        @apply relative w-full h-full cursor-pointer transition transform duration-1000;
+        transform-style: preserve-3d;
+      }
+      .card.disabled .card__inner {
+        cursor: default;
+      }
+      .card__inner.is-flipped {
+        transform: rotateY(-180deg);
+      }
+      .card__face {
+        @apply absolute w-full h-full overflow-hidden rounded-lg p-2;
+        backface-visibility: hidden;
+        box-shadow: 0 3px 18px 3px rgba(0, 0, 0, 0.2);
+      }
+      .card__face--front .card__content {
+        height: 100%;
+        width: 100%;
+      }
+      .card__face--font {
+        transform: rotateY(-180deg);
+      }
+      .card__face--back .card__content {
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 100%;
+        width: 100%;
+      }
+}
