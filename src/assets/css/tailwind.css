@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer base{
+      body{
+        @apply bg-gray-800 
+      }
       .card__inner {
         @apply relative w-full h-full cursor-pointer transition transform duration-1000;
         transform-style: preserve-3d;
@@ -31,5 +34,8 @@
         background-size: contain;
         height: 100%;
         width: 100%;
+      }
+      .homepage-button{
+        @apply flex flex-col items-center bg-black rounded-lg border-white border px-6 py-3 hover:opacity-80;
       }
 }

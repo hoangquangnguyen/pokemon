@@ -4,7 +4,7 @@
     <router-link to="/about">About</router-link>
   </nav>
   <router-view /> -->
-  <div class="h-full grid grid-cols-4 gap-1 items-center p-5">
+  <!-- <div class="h-full grid grid-cols-4 gap-1 items-center p-5">
     <card-com />
     <card-com />
     <card-com />
@@ -21,15 +21,15 @@
     <card-com />
     <card-com />
     <card-com />
-  </div>
+  </div> -->
+  <home-page />
 </template>
 
 <script lang="ts">
-import { ref } from "vue";
-import CardCom from "./components/CardCom.vue";
+import HomePage from "./views/HomePage.vue";
 
 export default {
-  components: { CardCom },
+  components: { HomePage },
   setup() {
     return {};
   },
