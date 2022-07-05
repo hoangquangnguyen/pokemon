@@ -36,6 +36,6 @@
         width: 100%;
       }
       .homepage-button{
-        @apply flex flex-col items-center bg-black rounded-xl border-white border-2 px-6 py-3 hover:opacity-80;
+        @apply w-[150px] flex flex-col items-center bg-black rounded-xl border-white border-2 px-6 py-3 hover:opacity-80;
       }
 }

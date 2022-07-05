@@ -11,13 +11,19 @@ const mutations = {
   setplaymodeM(state: any, payload: number) {
     state.playMode = payload;
   },
+  setstepM(state: any, payload: number) {
+    state.countStep = payload;
+  },
 };
 const actions = {
   increment(context: any) {
     context.commit("incrementM");
   },
-  setplaymode(context: any) {
-    context.commit("setplaymodeM");
+  setplaymode(context: any, num: number) {
+    context.commit("setplaymodeM", num);
+  },
+  setstep(context: any, num: number) {
+    context.commit("setstepM", num);
   },
 };
 const modules = {};
