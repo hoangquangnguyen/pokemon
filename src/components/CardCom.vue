@@ -10,7 +10,15 @@
       @transitionstart="onStartAnimation"
       @transitionend="onEndAnimation"
     >
-      <div class="card_face card_face-back bg-[#030426ed]"></div>
+      <div
+        class="card_face card_face-back bg-[#030426ed] flex items-center justify-center"
+      >
+        <img
+          src="@/assets/image/icon_back.png"
+          alt=""
+          class="h-[50p] w-[50px]"
+        />
+      </div>
       <div class="card_face card_face-font bg-white text-black"></div>
     </div>
   </div>
