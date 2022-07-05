@@ -6,29 +6,29 @@
       body{
         @apply bg-gray-800 
       }
-      .card__inner {
-        @apply relative w-full h-full cursor-pointer transition transform duration-1000;
+      .card_inner {
+        @apply relative w-full h-full cursor-pointer transition transform duration-500;
         transform-style: preserve-3d;
       }
-      .card.disabled .card__inner {
+      .card.disabled .card_inner {
         cursor: default;
       }
-      .card__inner.is-flipped {
+      .card_inner.is-flipped {
         transform: rotateY(-180deg);
       }
-      .card__face {
-        @apply absolute w-full h-full overflow-hidden rounded-lg p-2;
+      .card_face {
+        @apply absolute w-full h-full overflow-hidden rounded-lg p-1 border border-gray-600 select-none;
         backface-visibility: hidden;
         box-shadow: 0 3px 18px 3px rgba(0, 0, 0, 0.2);
       }
-      .card__face--front .card__content {
+      .card_face-front .card_content {
         height: 100%;
         width: 100%;
       }
-      .card__face--font {
+      .card_face-font {
         transform: rotateY(-180deg);
       }
-      .card__face--back .card__content {
+      .card_face-back .card_content {
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;

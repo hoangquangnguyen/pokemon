@@ -4,32 +4,14 @@
     <router-link to="/about">About</router-link>
   </nav>
   <router-view /> -->
-  <!-- <div class="h-full grid grid-cols-4 gap-1 items-center p-5">
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-    <card-com />
-  </div> -->
-  <home-page />
+  <play-view />
 </template>
 
 <script lang="ts">
-import HomePage from "./views/HomePage.vue";
+import PlayView from "./views/PlayView.vue";
 
 export default {
-  components: { HomePage },
+  components: { PlayView },
   setup() {
     return {};
   },
