@@ -39,6 +39,17 @@ import router from "@/router";
 export default {
   components: { CardCom },
   setup() {
+    function shuffle(array: number[]): number[] {
+      array = [...array];
+
+      for (let index = array.length - 1; index > 0; index--) {
+        const newIndex = Math.floor(Math.random() * (index + 1));
+        [array[index], array[newIndex]] = [array[newIndex], array[index]];
+      }
+
+      return array;
+    }
+
     const store = useStore();
     const count = computed(() => {
       return store.state.countStep;
@@ -59,7 +70,8 @@ export default {
       40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57,
       58, 59, 60, 61, 62, 63, 64,
     ];
-
+    const shuffled = shuffle([1, 2, 3, 4, 5, 6, 7, 8]);
+    console.log(shuffled);
     const classContent = ref("");
     const cardWidth = ref("0px");
     const cardHeight = ref("0px");
