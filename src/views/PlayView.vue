@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-      class="lg:absolute top-0 left-[10%] text-white flex flex-row lg:flex-col items-center justify-between select-none mx-3"
+      class="lg:absolute top-0 left-[5%] text-white flex flex-row lg:flex-col items-center justify-between select-none mx-3"
     >
       <div>
         <p>Step</p>
@@ -12,6 +12,7 @@
         <p class="lg:mt-[20px]">Time(s)</p>
         <p>0.0</p>
       </div>
+      <router-link to="/" class="mt-[200px]">back to home</router-link>
     </div>
     <div
       class="relative container grid gap-y-2 justify-center mx-auto mt-2"
@@ -33,6 +34,7 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 
 import CardCom from "@/components/CardCom.vue";
+import router from "@/router";
 
 export default {
   components: { CardCom },
@@ -41,6 +43,10 @@ export default {
     const count = computed(() => {
       return store.state.countStep;
     });
+    //back to home page when refesh page
+    if (store.state.playMode == 0) {
+      router.push("/");
+    }
     const matrix = ref([1, 2]);
     const matrix4 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     const matrix6 = [

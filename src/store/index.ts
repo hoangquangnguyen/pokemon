@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 const state = {
   countStep: 0,
-  playMode: 4,
+  playMode: 0,
 };
 const getters = {};
 const mutations = {
