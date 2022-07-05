@@ -4,14 +4,13 @@
     <router-link to="/about">About</router-link>
   </nav>
   <router-view /> -->
-  <play-view />
+  <!-- <play-view /> -->
+  <router-view />
 </template>
 
 <script lang="ts">
-import PlayView from "./views/PlayView.vue";
-
 export default {
-  components: { PlayView },
+  components: {},
   setup() {
     return {};
   },
