@@ -11,10 +11,12 @@
     <input
       type="text"
       placeholder="Enter your name"
-      :v-model="inputYourName"
+      v-model="yourname"
       class="border border-gray-800"
     />
-    <button class="px-5 py-2 mt-2 text-white bg-orange-600">Send</button>
+    <button class="px-5 py-2 mt-2 text-white bg-orange-600" @click="onSend">
+      Send
+    </button>
     <router-link to="/" class="px-5 py-2 mb-2 text-blue-700"
       >New game</router-link
     >
@@ -24,6 +26,7 @@
   </div>
 </template>
 <script lang="ts">
+import { easyCollect } from "@/data/firebasedata";
 import { ref } from "vue";
 
 export default {
@@ -33,7 +36,14 @@ export default {
   },
   setup(prop: any, context: any) {
     const rank = ref(999);
-    return { rank };
+    const yourname = ref("anonymous");
+    const { addEasy } = easyCollect();
+    //
+    function onSend() {
+      if (yourname.value == "") yourname.value = "anonymous";
+      addEasy({ playername: yourname.value, step: prop.step, time: prop.time });
+    }
+    return { rank, onSend, yourname };
   },
 };
 </script>

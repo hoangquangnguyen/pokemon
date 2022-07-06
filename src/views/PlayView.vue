@@ -36,8 +36,8 @@
     <PopupHighScore
       v-if="isPopup"
       class="fixed top-[20%] left-1/2 transition -translate-x-1/2"
-      :time="0"
-      :step="0"
+      :time="timer.toFixed(1)"
+      :step="count"
     />
   </div>
 </template>
@@ -72,6 +72,7 @@ export default {
     const isPopup = ref(false);
     function popupClick(bool: boolean) {
       isPopup.value = !bool;
+      doTimer.value = false;
     }
     //#endregion
     //back to home page when refesh page

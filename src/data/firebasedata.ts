@@ -1,14 +1,12 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
-import { getFirestore, serverTimestamp } from "firebase/firestore/lite";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  setDoc,
+  doc,
+  addDoc,
+} from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyCxzP_MV9whBjFDsBfVRzj1t5TEK3pVBAk",
   authDomain: "pokemonmem-55627.firebaseapp.com",
@@ -20,14 +18,34 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const app = firebase.initializeApp(firebaseConfig);
 
-//to get data from Collection
-const projectFirestore = getFirestore(app);
+const db = getFirestore();
 
-//to get data from Auth
-const projectAuth = firebase.auth();
-const timeServer = serverTimestamp();
+async function getAllEasy() {
+  const querySnapshot = await getDocs(collection(db, "easy"));
+  const data: any[] = [];
+  querySnapshot.query;
+  querySnapshot.forEach((doc) => {
+    data.push({
+      id: doc.id,
+      playername: doc.data().playername,
+      step: doc.data().step,
+      time: doc.data().time,
+      createdate: doc.data().createdate,
+    });
+  });
+  return data;
+}
+async function addEasy(rescord: any) {
+  return await addDoc(collection(db, "easy"), {
+    playername: rescord.playername,
+    step: rescord.step,
+    time: rescord.time,
+    createdate: new Date(),
+  });
+}
 
-export { projectFirestore, projectAuth, timeServer };
+export function easyCollect() {
+  return { getAllEasy, addEasy };
+}
