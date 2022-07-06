@@ -5,7 +5,7 @@ const state = {
 };
 const getters = {};
 const mutations = {
-  incrementM(state: any, payload: number) {
+  incrementM(state: any) {
     state.countStep++;
   },
   setplaymodeM(state: any, payload: number) {

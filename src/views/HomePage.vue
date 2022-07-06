@@ -3,7 +3,7 @@
     class="mx-auto w-full overflow-hidden flex flex-col text-white mt-[100px]"
   >
     <div class="flex flex-row items-center justify-center select-none">
-      <h1 class="text-5xl">Pokémon Memmories</h1>
+      <h1 class="text-5xl">Pokémon Memories</h1>
       <img
         src="@/assets/image/poke-ball.png"
         alt=""
@@ -21,7 +21,7 @@
         <span>normal</span>
       </button>
       <button class="homepage-button hover:text-red-300" @click="onPlay8x8">
-        <span>8 x 8</span>
+        <span>6 x 9</span>
         <span>hard</span>
       </button>
     </div>
@@ -49,7 +49,8 @@ export default {
       router.push("/play");
     }
     function onPlay8x8() {
-      console.log("play 8x8");
+      store.dispatch("setplaymode", 8);
+      router.push("/play");
     }
     return { onPlay4x4, onPlay6x6, onPlay8x8 };
   },

@@ -19,7 +19,17 @@
           class="h-[50p] w-[50px]"
         />
       </div>
-      <div class="card_face card_face-font bg-white text-black"></div>
+      <div
+        class="card_face card_face-font bg-white text-black"
+        :style="{
+          'background-position': 'center',
+          'background-repeat': 'no-repeat',
+          'background-size': 'contain',
+          backgroundImage: `url(${require('@/assets/image/' +
+            cardindex +
+            '.png')})`,
+        }"
+      ></div>
     </div>
   </div>
 </template>
@@ -31,17 +41,30 @@ export default {
   props: {
     width: String,
     height: String,
+    index: Number,
+    cardindex: {
+      type: [Number, String, Object],
+    },
   },
-  setup(props: any) {
+  setup(props: any, context: any) {
     const store = useStore();
     const isFlipped = ref(false);
     const isDisable = ref(false);
 
-    function onToggleFlipCard(disable: boolean) {
+    function onToggleFlipCard() {
       if (isDisable.value == false) {
-        isFlipped.value = !isFlipped.value;
-        if (isFlipped.value == true) store.dispatch("increment", 0);
+        if (isFlipped.value == false) {
+          isFlipped.value = true;
+          store.dispatch("increment", 0);
+          context.emit("eventFlip", props.index);
+        }
       }
+    }
+    function onFlipDown() {
+      if (isFlipped.value == true) isFlipped.value = false;
+    }
+    function setDisableCard() {
+      if (isDisable.value == true) isDisable.value = false;
     }
     function onStartAnimation() {
       isDisable.value = true;
@@ -55,6 +78,8 @@ export default {
       isDisable,
       onStartAnimation,
       onEndAnimation,
+      onFlipDown,
+      setDisableCard,
     };
   },
 };
