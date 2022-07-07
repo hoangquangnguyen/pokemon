@@ -26,7 +26,7 @@
           'background-repeat': 'no-repeat',
           'background-size': 'contain',
           backgroundImage: `url(${require('@/assets/image/' +
-            cardindex +
+            imgIndex +
             '.png')})`,
         }"
       ></div>
@@ -50,7 +50,8 @@ export default {
     const store = useStore();
     const isFlipped = ref(false);
     const isDisable = ref(false);
-
+    const imgIndex = ref(1);
+    imgIndex.value = store.state.cardImg[props.cardindex];
     function onToggleFlipCard() {
       if (isDisable.value == false) {
         if (isFlipped.value == false) {
@@ -80,6 +81,7 @@ export default {
       onEndAnimation,
       onFlipDown,
       setDisableCard,
+      imgIndex,
     };
   },
 };

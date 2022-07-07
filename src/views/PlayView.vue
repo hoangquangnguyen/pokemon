@@ -46,6 +46,8 @@ import { computed, ref } from "vue";
 import { useStore } from "vuex";
 import router from "@/router";
 
+import { ArrayFunction } from "@/use/arrayfunction";
+
 import CardCom from "@/components/CardCom.vue";
 import PopupEndGame from "@/components/PopupEndGame.vue";
 export default {
@@ -57,16 +59,7 @@ export default {
         Math.floor(store.state.countStep / 2) + (store.state.countStep % 2)
       );
     });
-    function shuffle(array: number[]): number[] {
-      array = [...array];
-
-      for (let index = array.length - 1; index > 0; index--) {
-        const newIndex = Math.floor(Math.random() * (index + 1));
-        [array[index], array[newIndex]] = [array[newIndex], array[index]];
-      }
-
-      return array;
-    }
+    const { shuffle } = ArrayFunction();
     //#region popup high score
     const isPopup = ref(false);
     //#endregion
@@ -104,18 +97,23 @@ export default {
     const matrixLevel = computed<number>(() => {
       return store.state.playMode;
     });
-
+    //shuffle image in asset
+    store.dispatch("cardReset");
+    store.dispatch("cardShuffle");
     if (matrixLevel.value == 4) {
+      store.dispatch("pickCardImg", 8);
       matrix.value = shuffle(matrix4);
       classContent.value = "grid-cols-4 w-[360px] md:w-[400px] gap-y-2 mt-10";
       cardHeight.value = "130px";
       cardWidth.value = "90px";
     } else if (matrixLevel.value == 6) {
+      store.dispatch("pickCardImg", 18);
       matrix.value = shuffle(matrix6);
       classContent.value = "grid-cols-6 w-[600px] gap-y-2 mt-2";
       cardHeight.value = "100px";
       cardWidth.value = "90px";
     } else {
+      store.dispatch("pickCardImg", 27);
       matrix.value = shuffle(matrix9);
       classContent.value = "grid-cols-9 w-[900px] gap-y-2 mt-2";
       cardHeight.value = "100px";

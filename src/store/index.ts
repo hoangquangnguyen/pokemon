@@ -1,7 +1,9 @@
 import { createStore } from "vuex";
+import { ArrayFunction } from "@/use/arrayfunction";
 const state = {
   countStep: 0,
   playMode: 0,
+  cardImg: [1, 2, 3, 4, 5, 6, 7, 8],
 };
 const getters = {};
 const mutations = {
@@ -14,6 +16,20 @@ const mutations = {
   setstepM(state: any, payload: number) {
     state.countStep = payload;
   },
+  cardResetM(state: any) {
+    state.cardImg = [];
+    for (let index = 1; index <= 151; index++) {
+      state.cardImg.push(index);
+    }
+  },
+  cardShuffleM(state: any) {
+    const { shuffle } = ArrayFunction();
+    state.cardImg = shuffle(state.cardImg);
+  },
+  pickCardImgM(state: any, payload: number) {
+    const { getN_elemental } = ArrayFunction();
+    state.cardImg = getN_elemental(state.cardImg, payload);
+  },
 };
 const actions = {
   increment(context: any) {
@@ -24,6 +40,15 @@ const actions = {
   },
   setstep(context: any, num: number) {
     context.commit("setstepM", num);
+  },
+  cardReset(context: any) {
+    context.commit("cardResetM");
+  },
+  cardShuffle(context: any) {
+    context.commit("cardShuffleM");
+  },
+  pickCardImg(context: any, num: number) {
+    context.commit("pickCardImgN", num);
   },
 };
 const modules = {};
