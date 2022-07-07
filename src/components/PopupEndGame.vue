@@ -28,6 +28,7 @@
 <script lang="ts">
 import { easyCollect } from "@/data/firebasedata";
 import { ref } from "vue";
+import { useStore } from "vuex";
 
 export default {
   props: {
@@ -37,11 +38,30 @@ export default {
   setup(prop: any, context: any) {
     const rank = ref(999);
     const yourname = ref("anonymous");
-    const { addEasy } = easyCollect();
+    const { addEasy, addHard, addNormal } = easyCollect();
+    const store = useStore();
     //
     function onSend() {
       if (yourname.value == "") yourname.value = "anonymous";
-      addEasy({ playername: yourname.value, step: prop.step, time: prop.time });
+      if (store.state.playMode == 4) {
+        addEasy({
+          playername: yourname.value,
+          step: prop.step,
+          time: prop.time,
+        });
+      } else if (store.state.playMode == 6) {
+        addNormal({
+          playername: yourname.value,
+          step: prop.step,
+          time: prop.time,
+        });
+      } else {
+        addHard({
+          playername: yourname.value,
+          step: prop.step,
+          time: prop.time,
+        });
+      }
     }
     return { rank, onSend, yourname };
   },

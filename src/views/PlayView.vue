@@ -33,7 +33,7 @@
         />
       </div>
     </div>
-    <PopupHighScore
+    <PopupEndGame
       v-if="isPopup"
       class="fixed top-[20%] left-1/2 transition -translate-x-1/2"
       :time="timer.toFixed(1)"
@@ -48,9 +48,9 @@ import { useStore } from "vuex";
 import router from "@/router";
 
 import CardCom from "@/components/CardCom.vue";
-import PopupHighScore from "@/components/PopupHighScore.vue";
+import PopupEndGame from "@/components/PopupEndGame.vue";
 export default {
-  components: { CardCom, PopupHighScore },
+  components: { CardCom, PopupEndGame },
   setup(_: any, context: any) {
     const store = useStore();
     const count = computed(() => {
