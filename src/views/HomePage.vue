@@ -26,7 +26,11 @@
       </button>
     </div>
     <a href="/" class="mt-[100px] flex flex-col items-center">
-      <p class="text-3xl text-gray-200 hover:text-white">High score</p>
+      <router-link
+        to="/highscore"
+        class="text-3xl text-gray-200 hover:text-white"
+        >High score</router-link
+      >
       <hr class="w-[150px]" />
     </a>
   </div>

@@ -13,7 +13,6 @@
         <p>{{ timer.toFixed(1) }}</p>
       </div>
       <router-link to="/" class="mt-[200px] text-sm">back to home</router-link>
-      <button class="px-5 py-2" @click="popupClick(isPopup)">popup</button>
     </div>
     <div :class="{ 'pointer-events-none': preventClick }">
       <div
@@ -70,10 +69,6 @@ export default {
     }
     //#region popup high score
     const isPopup = ref(false);
-    function popupClick(bool: boolean) {
-      isPopup.value = !bool;
-      doTimer.value = false;
-    }
     //#endregion
     //back to home page when refesh page
     if (store.state.playMode == 0) {
@@ -179,7 +174,6 @@ export default {
       setItemRef,
       preventClick,
       isPopup,
-      popupClick,
       timer,
     };
   },

@@ -14,6 +14,14 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "playview" */ "../views/PlayView.vue"),
   },
   {
+    path: "/highscore",
+    name: "highscore",
+    component: () =>
+      import(
+        /* webpackChunkName: "highscoreview" */ "../views/HighScoreView.vue"
+      ),
+  },
+  {
     path: "/about",
     name: "about",
     // route level code-splitting

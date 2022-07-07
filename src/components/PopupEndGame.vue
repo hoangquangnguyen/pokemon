@@ -4,7 +4,6 @@
     class="absolute bg-white rounded-lg flex flex-col gap-y-2 items-center justify-center border-4 border-black"
   >
     <h1>Congratulation</h1>
-    <h1>Rank:{{ rank }}</h1>
     <h2>Step:{{ step }}</h2>
     <h2>Time(s):{{ time }}</h2>
     <h1>Your name will be on the walls of the Hall Of Fame</h1>
@@ -29,6 +28,7 @@
 import { easyCollect } from "@/data/firebasedata";
 import { ref } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 
 export default {
   props: {
@@ -36,34 +36,36 @@ export default {
     time: Number,
   },
   setup(prop: any, context: any) {
-    const rank = ref(999);
+    // const rank = ref(999);
     const yourname = ref("anonymous");
-    const { addEasy, addHard, addNormal } = easyCollect();
+    const { add } = easyCollect();
     const store = useStore();
+    const router = useRouter();
     //
     function onSend() {
       if (yourname.value == "") yourname.value = "anonymous";
       if (store.state.playMode == 4) {
-        addEasy({
+        add("easy", {
           playername: yourname.value,
           step: prop.step,
           time: prop.time,
         });
       } else if (store.state.playMode == 6) {
-        addNormal({
+        add("normal", {
           playername: yourname.value,
           step: prop.step,
           time: prop.time,
         });
       } else {
-        addHard({
+        add("hard", {
           playername: yourname.value,
           step: prop.step,
           time: prop.time,
         });
       }
+      router.push("/");
     }
-    return { rank, onSend, yourname };
+    return { onSend, yourname };
   },
 };
 </script>

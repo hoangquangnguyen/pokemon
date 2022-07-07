@@ -3,9 +3,11 @@ import {
   getFirestore,
   collection,
   getDocs,
-  setDoc,
-  doc,
   addDoc,
+  query,
+  orderBy,
+  limit,
+  onSnapshot,
 } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyCxzP_MV9whBjFDsBfVRzj1t5TEK3pVBAk",
@@ -22,8 +24,34 @@ const app = firebase.initializeApp(firebaseConfig);
 
 const db = getFirestore();
 
+async function getAll(table: string) {
+  const q = query(collection(db, table), orderBy("step"), limit(100));
+  const querySnapshot = await getDocs(q);
+  const data: any[] = [];
+  querySnapshot.query;
+  querySnapshot.forEach((doc) => {
+    data.push({
+      id: doc.id,
+      playername: doc.data().playername,
+      step: doc.data().step,
+      time: doc.data().time,
+      createdate: doc.data().createdate,
+    });
+  });
+  return data;
+}
+async function add(table: string, rescord: any) {
+  return await addDoc(collection(db, table), {
+    playername: rescord.playername,
+    step: rescord.step,
+    time: rescord.time,
+    createdate: new Date(),
+  });
+}
+
 async function getAllEasy() {
-  const querySnapshot = await getDocs(collection(db, "easy"));
+  const q = query(collection(db, "easy"), orderBy("step"), limit(100));
+  const querySnapshot = await getDocs(q);
   const data: any[] = [];
   querySnapshot.query;
   querySnapshot.forEach((doc) => {
@@ -47,7 +75,8 @@ async function addEasy(rescord: any) {
 }
 
 async function getAllNormal() {
-  const querySnapshot = await getDocs(collection(db, "normal"));
+  const q = query(collection(db, "normal"), orderBy("step"), limit(100));
+  const querySnapshot = await getDocs(q);
   const data: any[] = [];
   querySnapshot.query;
   querySnapshot.forEach((doc) => {
@@ -71,9 +100,10 @@ async function addNormal(rescord: any) {
 }
 
 async function getAllHard() {
-  const querySnapshot = await getDocs(collection(db, "hard"));
+  const q = query(collection(db, "hard"), orderBy("step"), limit(100));
+  const querySnapshot = await getDocs(q);
   const data: any[] = [];
-  querySnapshot.query;
+
   querySnapshot.forEach((doc) => {
     data.push({
       id: doc.id,
@@ -95,5 +125,5 @@ async function addHard(rescord: any) {
 }
 
 export function easyCollect() {
-  return { getAllEasy, addEasy, getAllNormal, getAllHard, addNormal, addHard };
+  return { getAll, add };
 }
