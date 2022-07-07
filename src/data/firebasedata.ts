@@ -46,6 +46,54 @@ async function addEasy(rescord: any) {
   });
 }
 
+async function getAllNormal() {
+  const querySnapshot = await getDocs(collection(db, "normal"));
+  const data: any[] = [];
+  querySnapshot.query;
+  querySnapshot.forEach((doc) => {
+    data.push({
+      id: doc.id,
+      playername: doc.data().playername,
+      step: doc.data().step,
+      time: doc.data().time,
+      createdate: doc.data().createdate,
+    });
+  });
+  return data;
+}
+async function addNormal(rescord: any) {
+  return await addDoc(collection(db, "normal"), {
+    playername: rescord.playername,
+    step: rescord.step,
+    time: rescord.time,
+    createdate: new Date(),
+  });
+}
+
+async function getAllHard() {
+  const querySnapshot = await getDocs(collection(db, "hard"));
+  const data: any[] = [];
+  querySnapshot.query;
+  querySnapshot.forEach((doc) => {
+    data.push({
+      id: doc.id,
+      playername: doc.data().playername,
+      step: doc.data().step,
+      time: doc.data().time,
+      createdate: doc.data().createdate,
+    });
+  });
+  return data;
+}
+async function addHard(rescord: any) {
+  return await addDoc(collection(db, "hard"), {
+    playername: rescord.playername,
+    step: rescord.step,
+    time: rescord.time,
+    createdate: new Date(),
+  });
+}
+
 export function easyCollect() {
-  return { getAllEasy, addEasy };
+  return { getAllEasy, addEasy, getAllNormal, getAllHard, addNormal, addHard };
 }
