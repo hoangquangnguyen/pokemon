@@ -65,14 +65,15 @@
       class="flex flex-col items-center gap-2 mt-4 overflow-y-auto overflow-x-hidden"
     >
       <div
-        class="flex flex-row items-center justify-center max-w-[1200px] select-none"
+        class="flex flex-row items-center justify-center max-w-[1200px] select-none text-sm"
       >
-        <div class="w-[100px] flex justify-start ml-1"><p>Rank</p></div>
-        <div class="w-[300px] flex justify-start">Player</div>
-        <div class="w-[200px] flex justify-start">Step</div>
-        <div class="w-[200px] flex justify-start">Time(s)</div>
-        <div class="w-[350px] flex justify-start">Date</div>
+        <div class="w-[90px] flex justify-start ml-1"><p>Rank</p></div>
+        <div class="w-[250px] flex justify-start">Player</div>
+        <div class="w-[100px] flex justify-start">Step</div>
+        <div class="w-[120px] flex justify-start">Time(s)</div>
+        <div class="w-[200px] flex justify-center">Date</div>
       </div>
+      <hr class="border border-white w-full" />
       <div v-if="isMode1" class="flex flex-col items-center">
         <ScoreItem
           v-for="(item, index) in easyData"
