@@ -1,7 +1,7 @@
 <template>
   <div class="relative">
     <div
-      class="lg:absolute top-0 left-[10px] text-white flex flex-row lg:flex-col items-center justify-between select-none mx-3"
+      class="lg:absolute top-0 left-[10px] text-white flex flex-row lg:flex-col items-center justify-between select-none mx-3 lg:mb-0 mb-6 mt-6"
     >
       <div>
         <p>Step</p>
@@ -12,9 +12,11 @@
         <p class="lg:mt-[20px]">Time(s)</p>
         <p>{{ timer.toFixed(1) }}</p>
       </div>
-      <router-link to="/" class="mt-[200px] text-sm">back to home</router-link>
+      <router-link to="/" class="lg:mt-[200px] text-sm"
+        >back to home</router-link
+      >
     </div>
-    <div :class="{ 'pointer-events-none': preventClick }">
+    <div class="lg:mt-6" :class="{ 'pointer-events-none': preventClick }">
       <div
         class="relative container grid justify-center mx-auto"
         :class="[classContent]"
@@ -103,21 +105,22 @@ export default {
     if (matrixLevel.value == 4) {
       store.dispatch("pickCardImg", 8);
       matrix.value = shuffle(matrix4);
-      classContent.value = "grid-cols-4 w-[360px] md:w-[400px] gap-y-2 mt-10";
+      classContent.value =
+        "grid-cols-4 w-[360px] md:w-[400px] gap-y-[10px] mt-10";
       cardHeight.value = "130px";
       cardWidth.value = "90px";
     } else if (matrixLevel.value == 6) {
       store.dispatch("pickCardImg", 18);
       matrix.value = shuffle(matrix6);
-      classContent.value = "grid-cols-6 w-[600px] gap-y-2 mt-2";
+      classContent.value = "grid-cols-6 w-[600px] gap-y-[10px] mt-2";
       cardHeight.value = "100px";
       cardWidth.value = "90px";
     } else {
       store.dispatch("pickCardImg", 27);
       matrix.value = shuffle(matrix9);
-      classContent.value = "grid-cols-9 w-[900px] gap-y-2 mt-2";
-      cardHeight.value = "100px";
-      cardWidth.value = "90px";
+      classContent.value = "grid-cols-9 w-[780px] gap-y-[7px] mt-2";
+      cardHeight.value = "95px";
+      cardWidth.value = "80px";
     }
     //#endregion innit card
     //#region manager v-for obj

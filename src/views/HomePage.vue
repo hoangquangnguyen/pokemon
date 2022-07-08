@@ -3,7 +3,7 @@
     class="mx-auto w-full overflow-hidden flex flex-col text-white mt-[100px]"
   >
     <div class="flex flex-row items-center justify-center select-none">
-      <h1 class="text-5xl">Pokémon Memories</h1>
+      <h1 class="lg:text-5xl text-3xl">Pokémon Memories</h1>
       <img
         src="@/assets/image/poke-ball.png"
         alt=""
