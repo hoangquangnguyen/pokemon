@@ -4,20 +4,6 @@ import mutations from "./mutations";
 const state = {
   countStep: 0,
 };
-// const getters = {
-//   countStep: (state: any) => state.countStep,
-// };
-// const actions = {
-//   incremenStep(context: any) {
-//     context.commit("incrementStep");
-//   },
-// };
-
-// const mutations = {
-//   incrementStep(state: any) {
-//     state.countStep++;
-//   },
-// };
 
 export default {
   namespaced: true,

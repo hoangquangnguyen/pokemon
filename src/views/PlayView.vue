@@ -58,7 +58,8 @@ export default {
     const store = useStore();
     const count = computed(() => {
       return (
-        Math.floor(store.state.countStep / 2) + (store.state.countStep % 2)
+        Math.floor(store.getters["count_step/getStep"] / 2) +
+        (store.getters["count_step/getStep"] % 2)
       );
     });
     const { shuffle } = ArrayFunction();

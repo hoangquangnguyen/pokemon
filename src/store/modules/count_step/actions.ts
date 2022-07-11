@@ -3,3 +3,7 @@ export const incremenStep = (context: any) => {
   //commit data to mutation
   context.commit("incrementStep");
 };
+
+export const setStep = (context: any, payload: number) => {
+  context.commit("setStep", payload);
+};

@@ -43,7 +43,7 @@ export default {
   setup() {
     const router = useRouter();
     const store = useStore();
-    store.dispatch("setstep", 0);
+    store.dispatch("count_step/setStep", 0);
     function onPlay4x4() {
       store.dispatch("setplaymode", 4);
       router.push("/play");

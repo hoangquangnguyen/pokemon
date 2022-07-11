@@ -1,21 +1,14 @@
 import { createStore } from "vuex";
 import { ArrayFunction } from "@/use/arrayfunction";
-import count_step from "./modules/count-step";
+import count_step from "./modules/count_step";
 const state = {
-  countStep: 0,
   playMode: 0,
   cardImg: [1, 2, 3, 4, 5, 6, 7, 8],
 };
 const getters = {};
 const mutations = {
-  incrementM(state: any) {
-    state.countStep++;
-  },
   setplaymodeM(state: any, payload: number) {
     state.playMode = payload;
-  },
-  setstepM(state: any, payload: number) {
-    state.countStep = payload;
   },
   cardResetM(state: any) {
     state.cardImg = [];
@@ -33,14 +26,8 @@ const mutations = {
   },
 };
 const actions = {
-  increment(context: any) {
-    context.commit("incrementM");
-  },
   setplaymode(context: any, num: number) {
     context.commit("setplaymodeM", num);
-  },
-  setstep(context: any, num: number) {
-    context.commit("setstepM", num);
   },
   cardReset(context: any) {
     context.commit("cardResetM");

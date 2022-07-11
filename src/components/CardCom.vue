@@ -57,7 +57,7 @@ export default {
         if (isFlipped.value == false) {
           isFlipped.value = true;
           //access call actions increment() from root store
-          store.dispatch("increment");
+          //store.dispatch("increment");
           //access call actions incrementStep() from module store count_step
           store.dispatch("count_step/incremenStep");
           context.emit("eventFlip", props.index);

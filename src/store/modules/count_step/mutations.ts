@@ -3,6 +3,10 @@ function incrementStep(state: any) {
   //change state data
   state.countStep++;
 }
+function setStep(state: any, payload: number) {
+  state.countStep = payload;
+}
 export default {
   incrementStep,
+  setStep,
 };
