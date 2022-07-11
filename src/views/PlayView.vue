@@ -62,6 +62,9 @@ export default {
         (store.getters["count_step/getStep"] % 2)
       );
     });
+    store.dispatch("image/setTotalImage", 0);
+    store.dispatch("image/setTotalLoaded", 0);
+
     const { shuffle } = ArrayFunction();
     //#region popup high score
     const isPopup = ref(false);
@@ -101,23 +104,26 @@ export default {
       return store.state.playMode;
     });
     //shuffle image in asset
-    store.dispatch("cardReset");
-    store.dispatch("cardShuffle");
+    store.dispatch("image/cardReset");
+    store.dispatch("image/cardShuffle");
     if (matrixLevel.value == 4) {
-      store.dispatch("pickCardImg", 8);
+      store.dispatch("image/pickImageForCard", 8);
+      store.dispatch("image/setTotalImage", 16);
       matrix.value = shuffle(matrix4);
       classContent.value =
         "grid-cols-4 w-[360px] md:w-[400px] gap-y-[10px] mt-10";
       cardHeight.value = "130px";
       cardWidth.value = "90px";
     } else if (matrixLevel.value == 6) {
-      store.dispatch("pickCardImg", 18);
+      store.dispatch("image/pickImageForCard", 18);
+      store.dispatch("image/setTotalImage", 36);
       matrix.value = shuffle(matrix6);
       classContent.value = "grid-cols-6 w-[600px] gap-y-[10px] mt-2";
       cardHeight.value = "100px";
       cardWidth.value = "90px";
     } else {
-      store.dispatch("pickCardImg", 27);
+      store.dispatch("image/pickImageForCard", 27);
+      store.dispatch("image/setTotalImage", 54);
       matrix.value = shuffle(matrix9);
       classContent.value = "grid-cols-9 w-[780px] gap-y-[7px] mt-2";
       cardHeight.value = "95px";

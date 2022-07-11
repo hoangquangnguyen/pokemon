@@ -1,9 +1,9 @@
 import { createStore } from "vuex";
 import { ArrayFunction } from "@/use/arrayfunction";
 import count_step from "./modules/count_step";
+import image from "./modules/image";
 const state = {
   playMode: 0,
-  cardImg: [1, 2, 3, 4, 5, 6, 7, 8],
 };
 const getters = {};
 const mutations = {
@@ -50,5 +50,6 @@ export default createStore({
   actions,
   modules: {
     count_step,
+    image,
   },
 });

@@ -19,17 +19,13 @@
           class="h-[50p] w-[50px]"
         />
       </div>
-      <div
-        class="card_face card_face-font bg-white text-black"
-        :style="{
-          'background-position': 'center',
-          'background-repeat': 'no-repeat',
-          'background-size': 'contain',
-          backgroundImage: `url(${require('@/assets/image/' +
-            imgIndex +
-            '.png')})`,
-        }"
-      ></div>
+      <div class="card_face card_face-font bg-white text-black">
+        <img
+          :src="require('@/assets/image/' + imgIndex + '.png')"
+          alt=""
+          @load="isLoaded"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -51,7 +47,7 @@ export default {
     const isFlipped = ref(false);
     const isDisable = ref(false);
     const imgIndex = ref(1);
-    imgIndex.value = store.state.cardImg[props.cardindex];
+    imgIndex.value = store.state.image.cardImg[props.cardindex];
     function onToggleFlipCard() {
       if (isDisable.value == false) {
         if (isFlipped.value == false) {
@@ -76,6 +72,9 @@ export default {
     function onEndAnimation() {
       isDisable.value = false;
     }
+    function isLoaded() {
+      store.dispatch("image/increaseLoaded", 1);
+    }
     return {
       onToggleFlipCard,
       isFlipped,
@@ -85,6 +84,7 @@ export default {
       onFlipDown,
       setDisableCard,
       imgIndex,
+      isLoaded,
     };
   },
 };
