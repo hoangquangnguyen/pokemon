@@ -54,7 +54,7 @@ import CardCom from "@/components/CardCom.vue";
 import PopupEndGame from "@/components/PopupEndGame.vue";
 export default {
   components: { CardCom, PopupEndGame },
-  setup(_: any, context: any) {
+  setup() {
     const store = useStore();
     const count = computed(() => {
       return (

@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import { ArrayFunction } from "@/use/arrayfunction";
+import count_step from "./modules/count-step";
 const state = {
   countStep: 0,
   playMode: 0,
@@ -48,14 +49,19 @@ const actions = {
     context.commit("cardShuffleM");
   },
   pickCardImg(context: any, num: number) {
-    context.commit("pickCardImgN", num);
+    // because matrix get from 1,and img array get from 0 then the imgarray get langer than +1
+    context.commit("pickCardImgM", num + 1);
   },
 };
-const modules = {};
+// const modules = { count_step:
+//   { namespace=true,
+//     module_count_step} };
 export default createStore({
   state,
   getters,
   mutations,
   actions,
-  modules,
+  modules: {
+    count_step,
+  },
 });

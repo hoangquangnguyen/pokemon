@@ -9,7 +9,6 @@ function shuffle(array: number[]): number[] {
   return array;
 }
 function getN_elemental(array: number[], n: number): number[] {
-  array = [...array];
   return array.slice(0, n);
 }
 
