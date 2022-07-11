@@ -18,7 +18,7 @@
     </div>
     <div class="lg:mt-6" :class="{ 'pointer-events-none': preventClick }">
       <div
-        class="relative container grid justify-center mx-auto"
+        class="container grid justify-center mx-auto"
         :class="[classContent]"
       >
         <CardCom
