@@ -44,6 +44,7 @@ export default {
     const router = useRouter();
     const store = useStore();
     store.dispatch("count_step/setStep", 0);
+    store.dispatch("image/setTotalLoaded", 0);
     function onPlay4x4() {
       store.dispatch("setplaymode", 4);
       router.push("/play");

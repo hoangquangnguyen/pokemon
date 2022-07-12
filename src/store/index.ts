@@ -1,5 +1,4 @@
 import { createStore } from "vuex";
-import { ArrayFunction } from "@/use/arrayfunction";
 import count_step from "./modules/count_step";
 import image from "./modules/image";
 const state = {
