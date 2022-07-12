@@ -1,7 +1,7 @@
 import { ArrayFunction } from "@/use/arrayfunction";
 
 export function increaseLoaded(state: any, payload: number) {
-  state.totalLoaded += payload;
+  if (state.totalLoaded < state.totalImage) state.totalLoaded += payload;
 }
 
 export function setTotalImage(state: any, payload: number) {

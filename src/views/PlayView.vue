@@ -40,11 +40,35 @@
       :time="timer.toFixed(1)"
       :step="count"
     />
+    <!-- popup start game -->
+    <button
+      v-if="isProcessing == true"
+      type="button"
+      class="absolute top-1/2 left-1/2 transition -translate-x-1/2 -translate-y-1/2 bg-white"
+      disabled
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="animate-spin h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z"
+        />
+      </svg>
+
+      Processing...
+    </button>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 import router from "@/router";
 
@@ -73,16 +97,7 @@ export default {
     if (store.state.playMode == 0) {
       router.push("/");
     }
-    //#region  game timer
-    const timer = ref(0);
-    const doTimer = ref(true);
-    function startTimer() {
-      setInterval(() => {
-        if (doTimer.value == true) timer.value += 0.1;
-      }, 100);
-    }
-    startTimer();
-    //#endregion
+
     //#region init matrix
     const matrix = ref([1, 2]);
     const matrix4 = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
@@ -139,7 +154,7 @@ export default {
     };
     //#endregion manager v-for obj
     //#region game rule
-    const preventClick = ref(false);
+    const preventClick = ref(true);
     let checkArr: number[] = [];
     let complete = matrix.value.length;
     function checkRule(index: number) {
@@ -172,6 +187,23 @@ export default {
       }
     }
     //#endregion game rule
+    //#region  game timer
+    const isProcessing = ref(true);
+    const timer = ref(0);
+    const doTimer = ref(true);
+    function startTimer() {
+      setInterval(() => {
+        if (doTimer.value == true) timer.value += 0.1;
+      }, 100);
+    }
+    watch(store.state, (newValue, oldValue) => {
+      if (store.getters["image/loadImageComplete"] == true) {
+        startTimer();
+        preventClick.value = false;
+        isProcessing.value = false;
+      }
+    });
+    //#endregion game timer
     return {
       matrix,
       classContent,
@@ -183,6 +215,7 @@ export default {
       preventClick,
       isPopup,
       timer,
+      isProcessing,
     };
   },
 };

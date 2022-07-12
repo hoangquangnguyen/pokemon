@@ -19,8 +19,11 @@
           class="h-[50p] w-[50px]"
         />
       </div>
-      <div class="card_face card_face-font bg-white text-black">
+      <div
+        class="card_face card_face-font bg-white text-black flex items-center justify-center"
+      >
         <img
+          class="object-cover h-[90px] w-[80px]"
           :src="require('@/assets/image/' + imgIndex + '.png')"
           alt=""
           @load="isLoaded"
