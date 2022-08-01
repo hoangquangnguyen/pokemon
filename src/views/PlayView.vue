@@ -16,7 +16,7 @@
         >back to home</router-link
       >
     </div>
-    <div class="lg:mt-6" :class="{ 'pointer-events-none': preventClick }">
+    <div class="lg:mt-4" :class="{ 'pointer-events-none': preventClick }">
       <div
         class="container grid justify-center mx-auto"
         :class="[classContent]"
@@ -30,7 +30,7 @@
           :width="cardWidth"
           :height="cardHeight"
           class="flex items-center justify-center"
-          @eventFlip="checkRule($event)"
+          @eventFlip="checkRule(index)"
         />
       </div>
     </div>
@@ -71,8 +71,6 @@ import { computed, ref, watch } from "vue";
 import { useStore } from "vuex";
 import router from "@/router";
 
-import { ArrayFunction } from "@/use/arrayfunction";
-
 import CardCom from "@/components/CardCom.vue";
 import PopupEndGame from "@/components/PopupEndGame.vue";
 import { GameRule } from "@/use/PlayGame/game_rule";
@@ -104,6 +102,7 @@ export default {
       complete,
       initCard,
     } = GameRule();
+    checkArr.value = [];
     initCard();
     //#region  game timer
     const { isProcessing } = GameRule();
@@ -117,7 +116,6 @@ export default {
     watch(store.state.image, (newValue, oldValue) => {
       if (store.getters["image/loadImageComplete"] == true) {
         startTimer();
-        console.log("runtimer");
         preventClick.value = false;
         isProcessing.value = false;
       }
@@ -175,6 +173,7 @@ export default {
       isPopup,
       timer,
       isProcessing,
+      setItemRef,
     };
   },
 };

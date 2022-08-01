@@ -46,7 +46,7 @@ function initCard() {
     store.dispatch("image/pickImageForCard", 18);
     store.dispatch("image/setTotalImage", 36);
     matrix.value = shuffle(matrix6);
-    classContent.value = "grid-cols-6 w-[600px] gap-y-[10px] mt-2";
+    classContent.value = "grid-cols-6 w-[600px] gap-y-[9px] mt-2";
     cardHeight.value = "100px";
     cardWidth.value = "90px";
   } else {
@@ -57,6 +57,7 @@ function initCard() {
     cardHeight.value = "95px";
     cardWidth.value = "80px";
   }
+  complete.value = matrix.value.length;
 }
 
 export function GameRule() {

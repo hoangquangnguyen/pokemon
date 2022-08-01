@@ -25,14 +25,14 @@
         <span>hard</span>
       </button>
     </div>
-    <a href="/" class="mt-[100px] flex flex-col items-center">
+    <div class="mt-[100px] flex flex-col items-center">
       <router-link
         to="/highscore"
         class="text-3xl text-gray-200 hover:text-white"
         >High score</router-link
       >
       <hr class="w-[150px]" />
-    </a>
+    </div>
   </div>
 </template>
 
