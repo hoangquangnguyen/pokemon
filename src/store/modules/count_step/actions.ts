@@ -7,3 +7,7 @@ export const incremenStep = (context: any) => {
 export const setStep = (context: any, payload: number) => {
   context.commit("setStep", payload);
 };
+
+export const setStartGame = (context: any, payload: boolean) => {
+  context.commit("setStartGame", payload);
+};

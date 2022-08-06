@@ -87,6 +87,7 @@ export default {
     });
     store.dispatch("image/setTotalImage", 0);
     store.dispatch("image/setTotalLoaded", 0);
+    store.dispatch("count_step/setStartGame", false);
     const isPopup = ref(false);
     //back to home page when refesh page
     if (store.state.playMode == 0) {
@@ -107,17 +108,27 @@ export default {
     //#region  game timer
     const { isProcessing } = GameRule();
     const timer = ref(0);
-    const doTimer = ref(true);
+    const doTimer = ref(false);
     function startTimer() {
       setInterval(() => {
-        if (doTimer.value == true) timer.value += 0.1;
+        if (doTimer.value == true) {
+          timer.value += 0.1;
+        }
       }, 100);
     }
     watch(store.state.image, (newValue, oldValue) => {
       if (store.getters["image/loadImageComplete"] == true) {
-        startTimer();
         preventClick.value = false;
         isProcessing.value = false;
+      }
+    });
+    watch(store.state.count_step, (newValue, oldValue) => {
+      if (
+        store.getters["count_step/getStartGame"] == true &&
+        doTimer.value == false
+      ) {
+        doTimer.value = true;
+        startTimer();
       }
     });
     //#endregion game timer
